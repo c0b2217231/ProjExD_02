@@ -1,6 +1,6 @@
 import random
 import sys
-
+from tkinter import messagebox
 import pygame as pg
 
 #練習４
@@ -27,6 +27,8 @@ def check_bound(scr_rct: pg.Rect, obj_rct: pg.Rect) -> tuple[bool, bool]:
     return yoko, tate
 
 
+
+
 def main():
     pg.display.set_caption("逃げろ！こうかとん")
     screen = pg.display.set_mode((1400, 800))
@@ -36,7 +38,16 @@ def main():
     kk_img = pg.transform.rotozoom(kk_img, 0, 2.0)
     kk_rct = kk_img.get_rect() #練習４
     kk_rct.center = 900, 400 #練習4
-
+    
+    #タイマーを作りたい
+    clock = pg.time.Clock()
+    total_time = 10 #
+    game_font = pg.font.Font(None, 40)
+    start_time = pg.time.get_ticks()#始まる時間
+    elapsed_time = (pg.time.get_ticks() - start_time) / 1000 #経過時間表示（1000で分ける）
+    timer = game_font.render(str(int(total_time- elapsed_time)),True, (255,255,255))
+    screen.blit(timer, (10,10))
+    
     bb_img = pg.Surface((20, 20))
     pg.draw.circle(bb_img, (255, 0, 0), (10, 10), 10)
     bb_img.set_colorkey((0, 0, 0)) #練習1
@@ -74,6 +85,7 @@ def main():
             vy *= -1
         screen.blit(bb_img, bb_rct) #練習3
         if kk_rct.colliderect(bb_rct): #練習６
+            messagebox.showinfo("Finish","ゲームオーバー")
             return
 
         pg.display.update()
