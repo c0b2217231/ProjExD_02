@@ -1,3 +1,5 @@
+import random
+
 import pygame as pg
 import sys
 
@@ -11,6 +13,8 @@ def main():
     bb_img = pg.Surface((20, 20))
     pg.draw.circle(bb_img, (255, 0, 0), (10, 10), 10)
     bb_img.set_colorkey((0, 0, 0)) #練習1
+    x, y = random.randint(0, 1600), random.randint(0, 900) #練習２
+    screen.blit(bb_img, [x, y])#練習２
     tmr = 0
 
     while True:
@@ -21,6 +25,7 @@ def main():
         tmr += 1
         screen.blit(bg_img, [0, 0])
         screen.blit(kk_img, [900, 400])
+        #screen.blit(bg_img, [x, y])
 
         pg.display.update()
         clock.tick(1000)
