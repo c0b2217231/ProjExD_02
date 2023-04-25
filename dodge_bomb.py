@@ -40,7 +40,7 @@ def main():
     bb_img = pg.Surface((20, 20))
     pg.draw.circle(bb_img, (255, 0, 0), (10, 10), 10)
     bb_img.set_colorkey((0, 0, 0)) #練習1
-    x, y = random.randint(0, 1400), random.randint(0, 800) #練習２
+    x, y = random.randint(0, 1400), random.randint(0, 800) #練習２,練習５の時に画面のサイズを調整
     #screen.blit(bb_img, [x, y])#練習２
     vx, vy = +1, +1 #練習３
     bb_rct = bb_img.get_rect() #練習３
@@ -73,6 +73,8 @@ def main():
         if not tate: #縦方向に這い出ていたら
             vy *= -1
         screen.blit(bb_img, bb_rct) #練習3
+        if kk_rct.colliderect(bb_rct): #練習６
+            return
 
         pg.display.update()
         clock.tick(1000)
