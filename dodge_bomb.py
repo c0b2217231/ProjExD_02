@@ -85,7 +85,7 @@ def main():
             vy *= -1
         screen.blit(bb_img, bb_rct) #練習3
         if kk_rct.colliderect(bb_rct): #練習６
-            messagebox.showinfo("Finish","ゲームオーバー")
+            messagebox.showinfo("終わり","ゲームオーバー")
             return
 
         pg.display.update()
